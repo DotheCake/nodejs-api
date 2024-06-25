@@ -1,12 +1,23 @@
 const express = require('express')
 const app = express()
 
-app.get("/", function(req, res){
-    res.send("Hello World")
+const herois = ["Homen Aranha", "Hulk", "Miss Marvel"]
+
+//endpoint são os finais do link, oque esta depois do "/", nesse caso ele esta lendo toda a listagem
+app.get("/heroes", function(req,res){
+    res.send(herois)
 })
 
-app.get("/ptbr", function(req, res){
-    res.send("Olá, Mundo")
+app.get("/heroes/:id", function(req,res){
+    //acessar o parametro ID
+    const id  = req.params.id
+    const umheroi = herois[id]
+    res.send(umheroi)
 })
+
+//app.post()
+//app.put()
+//app.delete()
+
 
 app.listen(3000)
